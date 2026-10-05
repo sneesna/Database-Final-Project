@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dnn55feudtrja"]
+
+[ext_resource type="Script" uid="uid://bpl3myvojdhdp" path="res://Scripts/main_menu.gd" id="1_00u4r"]
+[ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="2_anlgx"]
+[ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_xvotp"]
+[ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_1edw4"]
+
+[node name="Control" type="Control" unique_id=26166730]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_00u4r")
+
+[node name="bkg" type="Sprite2D" parent="." unique_id=674815220]
+position = Vector2(963, 536.5)
+scale = Vector2(1.0375, 1.0601852)
+texture = ExtResource("2_anlgx")
+
+[node name="title" type="Label" parent="." unique_id=1365770835]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 80.0
+offset_right = 1079.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+
+[node name="logout_button" type="TextureButton" parent="." unique_id=2033125976]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 640.0
+offset_right = 1123.0
+offset_bottom = 820.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="logout_label" type="Label" parent="." unique_id=1088717366]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 692.0
+offset_right = 1421.0
+offset_bottom = 759.0
+theme_override_font_sizes/font_size = 48
+text = "log out"
+
+[node name="quit_button" type="TextureButton" parent="." unique_id=156324187]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 850.0
+offset_right = 1123.0
+offset_bottom = 1030.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="quit_label" type="Label" parent="." unique_id=1967634398]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 902.0
+offset_right = 1421.0
+offset_bottom = 969.0
+theme_override_font_sizes/font_size = 48
+text = "quit"
+
+[connection signal="pressed" from="logout_button" to="." method="_on_logout_button_pressed"]
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]

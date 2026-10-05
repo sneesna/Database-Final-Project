@@ -12,7 +12,16 @@ config_version=5
 
 config/name="DBProject"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Placeholder/icon.svg"
+
+[autoload]
+
+Global="*uid://dsoy2301ix4cf"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [physics]
 
@@ -21,4 +30,3 @@ config/icon="res://icon.svg"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="forward_plus"

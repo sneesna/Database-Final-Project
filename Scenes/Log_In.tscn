@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cr8f50wjqfi1r"]
+
+[ext_resource type="Script" uid="uid://8p87ddtqvlcp" path="res://Scripts/log_in.gd" id="1_ymvbc"]
+[ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="2_sro47"]
+[ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_yktu5"]
+[ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_puoa2"]
+
+[node name="Control" type="Control" unique_id=1568385316]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ymvbc")
+
+[node name="bkg" type="Sprite2D" parent="." unique_id=1565402044]
+position = Vector2(979, 534.5)
+scale = Vector2(1.0760417, 1.1083333)
+texture = ExtResource("2_sro47")
+
+[node name="title" type="Label" parent="." unique_id=1919345114]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 168.0
+offset_right = 1033.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 32
+text = "Log In Page"
+
+[node name="user_input" type="LineEdit" parent="." unique_id=1948416441]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 320.0
+offset_right = 1344.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Username"
+
+[node name="pass_input" type="LineEdit" parent="." unique_id=409336662]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 467.0
+offset_right = 1345.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Password"
+
+[node name="submit_button" type="TextureButton" parent="." unique_id=1063187056]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 682.0
+offset_right = 1099.0
+offset_bottom = 862.0
+texture_normal = ExtResource("3_yktu5")
+texture_hover = ExtResource("4_puoa2")
+
+[connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://p6pxpjn2yitn"]
+
+[ext_resource type="Script" uid="uid://tuc1lrndw5i1" path="res://Scripts/signup_screen.gd" id="1_njpim"]
+[ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="2_bqney"]
+[ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_gd6cd"]
+[ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_tndk6"]
+
+[node name="Control" type="Control" unique_id=1596942585]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njpim")
+
+[node name="bkg" type="Sprite2D" parent="." unique_id=886137703]
+position = Vector2(996, 538)
+scale = Vector2(1.084375, 1.0888889)
+texture = ExtResource("2_bqney")
+
+[node name="title" type="Label" parent="." unique_id=1920926189]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 82.0
+offset_right = 1123.0
+offset_bottom = 271.0
+theme_override_font_sizes/font_size = 32
+text = "temp sign-in screen
+Log In
+Sign Up
+Guest"
+
+[node name="login" type="TextureButton" parent="." unique_id=18937661]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 303.0
+offset_right = 1115.0
+offset_bottom = 483.0
+texture_normal = ExtResource("3_gd6cd")
+texture_hover = ExtResource("4_tndk6")
+
+[node name="signup" type="TextureButton" parent="." unique_id=2066188632]
+layout_mode = 0
+offset_left = 793.0
+offset_top = 545.0
+offset_right = 1113.0
+offset_bottom = 725.0
+texture_normal = ExtResource("3_gd6cd")
+texture_hover = ExtResource("4_tndk6")
+
+[node name="guest" type="TextureButton" parent="." unique_id=1411353174]
+layout_mode = 0
+offset_left = 793.0
+offset_top = 779.0
+offset_right = 1113.0
+offset_bottom = 959.0
+texture_normal = ExtResource("3_gd6cd")
+texture_hover = ExtResource("4_tndk6")
+
+[connection signal="pressed" from="login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="signup" to="." method="_on_signup_pressed"]
+[connection signal="pressed" from="guest" to="." method="_on_guest_pressed"]
