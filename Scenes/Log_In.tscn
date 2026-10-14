@@ -55,4 +55,13 @@ offset_bottom = 862.0
 texture_normal = ExtResource("3_yktu5")
 texture_hover = ExtResource("4_puoa2")
 
+[node name="error_label" type="Label" parent="." unique_id=117703604]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 612.0
+offset_right = 1246.0
+offset_bottom = 657.0
+theme_override_colors/font_color = Color(0.70625865, 0.15111628, 0.13162798, 1)
+theme_override_font_sizes/font_size = 32
+
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
