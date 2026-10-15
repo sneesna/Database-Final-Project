@@ -64,4 +64,24 @@ offset_bottom = 657.0
 theme_override_colors/font_color = Color(0.70625865, 0.15111628, 0.13162798, 1)
 theme_override_font_sizes/font_size = 32
 
+[node name="back_button" type="TextureButton" parent="." unique_id=608377153]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 19.0
+offset_right = 347.0
+offset_bottom = 199.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("3_yktu5")
+texture_hover = ExtResource("4_puoa2")
+
+[node name="back_label" type="Label" parent="." unique_id=529298611]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 41.0
+offset_right = 561.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 48
+text = "back"
+
 [connection signal="pressed" from="submit_button" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]

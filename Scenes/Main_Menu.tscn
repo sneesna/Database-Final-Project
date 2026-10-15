@@ -64,5 +64,24 @@ offset_bottom = 969.0
 theme_override_font_sizes/font_size = 48
 text = "quit"
 
+[node name="leaderboard_button" type="TextureButton" parent="." unique_id=1828873848]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 643.0
+offset_right = 415.0
+offset_bottom = 823.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="leaderboard_label" type="Label" parent="." unique_id=573722247]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 688.0
+offset_right = 699.0
+offset_bottom = 755.0
+theme_override_font_sizes/font_size = 48
+text = "leaderboard"
+
 [connection signal="pressed" from="logout_button" to="." method="_on_logout_button_pressed"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="leaderboard_button" to="." method="_on_leaderboard_button_pressed"]

@@ -69,3 +69,6 @@ func parameterize(input) -> String:
 			input = input.substr(0, char-1) + '\\' + input.substr(char)
 	
 	return input
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Signup_Screen.tscn")
