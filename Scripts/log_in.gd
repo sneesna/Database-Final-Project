@@ -49,7 +49,7 @@ func _on_submit_button_pressed() -> void:
 	var pass_match = 0
 	
 	# Is the password entered matching that of the username?
-	if password.sha256_text() == account_db.query_result[0]["password"]:
+	if password.sha256_text() == account_db.query_result[0]["Password"]:
 		pass_match = 1
 	
 	# If it doesn't match, password is not valid
@@ -62,8 +62,8 @@ func _on_submit_button_pressed() -> void:
 	account_db.close_db()
 	
 	# Continue to game as user
-	get_tree().change_scene_to_file("res://Main_Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
 
 # Return to login screen without doing anything
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Signup_Screen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Signup_Screen.tscn")

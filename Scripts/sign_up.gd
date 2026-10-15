@@ -8,10 +8,10 @@ func _ready() -> void:
 
 func _on_submit_button_pressed() -> void:
 	# Get inputted username
-	var username = $user_input
+	var username = $user_input.text
 	
 	# Get inputted password
-	var password = $pass_input
+	var password = $pass_input.text
 	
 	if not username:
 		$error_label.text = "Error: Please enter a username."
@@ -44,7 +44,8 @@ func _on_submit_button_pressed() -> void:
 	
 	account_db.query(this_q)
 	
-	if (account_db.query_results[0]["username"] != null):
+	# Check if username is taken
+	if (account_db.query_result.size() > 0):
 		$error_label.text = "Error: Username is taken."
 		account_db.close_db()
 		return
@@ -52,12 +53,12 @@ func _on_submit_button_pressed() -> void:
 	password = password.sha256_text()
 	
 	# Enter the username into the database
-	this_q = "INSERT INTO accounts ('Username', 'Password') values ('" + username + "', '" + password + "');"
+	this_q = "INSERT INTO users ('Username', 'Password') values ('" + username + "', '" + password + "');"
 	account_db.query(this_q)
-	
+		
 	account_db.close_db()
 	
-	get_tree().change_scene_to_file("res://Signup_Screen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Signup_Screen.tscn")
 
 # Transform input into a single word with escape sequences for special characters
 func parameterize(input) -> String:

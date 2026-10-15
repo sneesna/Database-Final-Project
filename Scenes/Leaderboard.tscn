@@ -38,15 +38,16 @@ size_flags_vertical = 3
 
 [node name="rank" type="Label" parent="VBox/your_recent" unique_id=1888822462]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 
 [node name="user" type="Label" parent="VBox/your_recent" unique_id=483928169]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/your_recent" unique_id=98987757]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 28
 
 [node name="your_high" type="HBoxContainer" parent="VBox" unique_id=2145770000]
 layout_mode = 2
@@ -54,16 +55,17 @@ size_flags_vertical = 3
 
 [node name="rank" type="Label" parent="VBox/your_high" unique_id=1949436734]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = " "
 
 [node name="user" type="Label" parent="VBox/your_high" unique_id=1868676722]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/your_high" unique_id=1359284176]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 28
 
 [node name="rank_1" type="HBoxContainer" parent="VBox" unique_id=1327896063]
 layout_mode = 2
@@ -80,6 +82,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_1" unique_id=1221752513]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_2" type="HBoxContainer" parent="VBox" unique_id=1474201490]
@@ -97,6 +100,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_2" unique_id=1095958846]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_3" type="HBoxContainer" parent="VBox" unique_id=1853251206]
@@ -114,6 +118,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_3" unique_id=1894257327]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_4" type="HBoxContainer" parent="VBox" unique_id=1786064792]
@@ -131,6 +136,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_4" unique_id=55560911]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_5" type="HBoxContainer" parent="VBox" unique_id=2047340371]
@@ -148,6 +154,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_5" unique_id=1074578539]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_6" type="HBoxContainer" parent="VBox" unique_id=90196142]
@@ -165,6 +172,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_6" unique_id=1675691707]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_7" type="HBoxContainer" parent="VBox" unique_id=1113506033]
@@ -182,6 +190,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_7" unique_id=1366287704]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_8" type="HBoxContainer" parent="VBox" unique_id=856740033]
@@ -199,6 +208,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_8" unique_id=1298765282]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_9" type="HBoxContainer" parent="VBox" unique_id=1148883073]
@@ -216,6 +226,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_9" unique_id=237264603]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="rank_10" type="HBoxContainer" parent="VBox" unique_id=1904030692]
@@ -233,6 +244,7 @@ theme_override_font_sizes/font_size = 28
 
 [node name="score" type="Label" parent="VBox/rank_10" unique_id=1309683355]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 28
 
 [node name="back_button" type="TextureButton" parent="." unique_id=624881212]
@@ -253,5 +265,23 @@ offset_right = 561.0
 offset_bottom = 108.0
 theme_override_font_sizes/font_size = 48
 text = "back"
+
+[node name="recent_label" type="Label" parent="." unique_id=48451531]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 201.0
+offset_right = 713.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 28
+text = "recent"
+
+[node name="high_label" type="Label" parent="." unique_id=492437936]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 264.0
+offset_right = 701.0
+offset_bottom = 331.0
+theme_override_font_sizes/font_size = 28
+text = "highest"
 
 [connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]

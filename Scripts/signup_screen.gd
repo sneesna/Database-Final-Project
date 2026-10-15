@@ -9,11 +9,11 @@ func _ready() -> void:
 
 # When login button pressed, go to login scene
 func _on_login_pressed() -> void:
-	get_tree().change_scene_fo_file("res://Scenes/Log_In.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Log_In.tscn")
 
 # When signup button pressed, go to signup scene
 func _on_signup_pressed() -> void:
-	get_tree().change_scene_fo_file("res://Scenes/Sign_Up.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Sign_Up.tscn")
 
 # When guest button pressed, skip to main menu screen
 # User ID stays 0 (guest)

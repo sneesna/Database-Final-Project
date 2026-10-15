@@ -11,6 +11,9 @@ func _ready() -> void:
 	account_db = SQLite.new()
 	account_db.path = "res://Databases/accounts.db"
 	
+	# Open the database
+	account_db.open_db()
+	
 	# Show the user's recent and highest scores if they are logged in
 	if Global.userID != 0:
 		fill_user()
@@ -19,7 +22,7 @@ func _ready() -> void:
 	fill_scores()
 	
 	# Close the database
-	account_db.close()
+	account_db.close_db()
 
 func fill_user() -> void:
 	# Get scores sorted by most recent (largest score id)
@@ -36,10 +39,10 @@ func fill_user() -> void:
 	
 	# Fill in recent score
 	$VBox/your_recent/user.text = account_db.query_result[0]["Username"]
-	$VBox/your_recent/score.text = account_db.query_result[0]["Score"]
+	$VBox/your_recent/score.text = str(account_db.query_result[0]["Score"])
 	
 	# Query all scores sorted by score to find rank for both recent and high score
-	this_q = "SELECT UserID, ScoreID, Username, Score FROM scores JOIN users ON users.UserID = scores.UserID ORDER BY Score DESC;"
+	this_q = "SELECT users.UserID, ScoreID, Username, Score FROM scores JOIN users ON users.UserID = scores.UserID ORDER BY Score DESC;"
 	account_db.query(this_q)
 	
 	size = account_db.query_result.size()
@@ -57,12 +60,12 @@ func fill_user() -> void:
 		if (Global.userID == account_db.query_result[i]["UserID"]):
 			# Fill in high score
 			$VBox/your_high/user.text = account_db.query_result[i]["Username"]
-			$VBox/your_high/score.text = account_db.query_result[i]["Score"]
+			$VBox/your_high/score.text = str(account_db.query_result[i]["Score"])
 			$VBox/your_high/rank.text = str(i + 1) + "."
 			break
 
 func fill_scores() -> void:
-	var this_q = "SELECT Username, Score FROM scores JOIN users ON scores.UserID = user.UserID ORDER BY Score DESC;"
+	var this_q = "SELECT Username, Score FROM scores JOIN users ON scores.UserID = users.UserID ORDER BY Score DESC;"
 	account_db.query(this_q)
 	
 	var size = account_db.query_result.size()
@@ -102,4 +105,4 @@ func fill_scores() -> void:
 		$VBox/rank_10/score.text = str(account_db.query_result[9]["Score"])
 
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Main_Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
