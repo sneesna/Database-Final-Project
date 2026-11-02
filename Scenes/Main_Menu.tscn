@@ -82,6 +82,25 @@ offset_bottom = 755.0
 theme_override_font_sizes/font_size = 48
 text = "leaderboard"
 
+[node name="settings_button" type="TextureButton" parent="." unique_id=1369190286]
+layout_mode = 0
+offset_left = 1397.0
+offset_top = 649.0
+offset_right = 1717.0
+offset_bottom = 829.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="settings_label" type="Label" parent="." unique_id=198044409]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 688.0
+offset_right = 723.0
+offset_bottom = 755.0
+theme_override_font_sizes/font_size = 48
+text = "leaderboard"
+
 [connection signal="pressed" from="logout_button" to="." method="_on_logout_button_pressed"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="leaderboard_button" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]

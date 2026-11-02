@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://nbgyuos3oe23"
+path="res://.godot/imported/Old ROBLOX Splat Tripping Sound.mp3-83e44721fa1d1e4a8abf2d79b9c47893.mp3str"
+
+[deps]
+
+source_file="res://Assets/audio/Old ROBLOX Splat Tripping Sound.mp3"
+dest_files=["res://.godot/imported/Old ROBLOX Splat Tripping Sound.mp3-83e44721fa1d1e4a8abf2d79b9c47893.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

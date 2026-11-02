@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cyhrujvgwwofd"]
+
+[ext_resource type="AudioStream" uid="uid://nbgyuos3oe23" path="res://Assets/audio/Old ROBLOX Splat Tripping Sound.mp3" id="1_tcyhk"]
+
+[node name="OldRobloxSplatTrippingSound" type="AudioStreamPlayer" unique_id=1722370265]
+stream = ExtResource("1_tcyhk")
+bus = &"SFX"

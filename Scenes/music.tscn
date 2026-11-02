@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5rsf011uw8js"]
+
+[ext_resource type="AudioStream" uid="uid://bt2yihf57q0om" path="res://Assets/audio/Monster High Fright Song ver. RafScrap ft. Gezeus Quiryst & Mortius.mp3" id="1_fbmny"]
+
+[node name="Music" type="AudioStreamPlayer" unique_id=1226110331]
+stream = ExtResource("1_fbmny")
+autoplay = true
+bus = &"Music"

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://ccycvkhiqwyto"]
+
+[ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="1_c2hp5"]
+[ext_resource type="Script" uid="uid://dd5bcfc1x0dts" path="res://Scripts/settings_menu.gd" id="1_e0xh6"]
+[ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="2_e0xh6"]
+
+[node name="Control" type="Control" unique_id=222101917]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e0xh6")
+
+[node name="BlackBg" type="Sprite2D" parent="." unique_id=367028997]
+position = Vector2(960, 541)
+texture = ExtResource("1_c2hp5")
+
+[node name="largeText" type="CheckButton" parent="." unique_id=1635489508]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 373.0
+offset_right = 1245.0
+offset_bottom = 457.0
+text = "Larger Text"
+
+[node name="dysFont" type="CheckButton" parent="." unique_id=577580221]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 457.0
+offset_right = 1245.0
+offset_bottom = 534.0
+text = "Dyslexia Font"
+
+[node name="bgMusic" type="CheckButton" parent="." unique_id=266784175]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 220.0
+offset_right = 1245.0
+offset_bottom = 271.0
+button_pressed = true
+text = "Background Music"
+
+[node name="sfxVol" type="CheckButton" parent="." unique_id=887395717]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 290.0
+offset_right = 1245.0
+offset_bottom = 341.0
+button_pressed = true
+text = "SFX"
+
+[node name="saveSettingsBtn" type="TextureButton" parent="." unique_id=1884125797]
+layout_mode = 0
+offset_left = 1042.0
+offset_top = 650.0
+offset_right = 1362.0
+offset_bottom = 830.0
+texture_normal = ExtResource("2_e0xh6")
+
+[node name="cancelSettingsBtn" type="TextureButton" parent="." unique_id=331738799]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 650.0
+offset_right = 896.0
+offset_bottom = 830.0
+texture_normal = ExtResource("2_e0xh6")
+
+[node name="backBtn" type="TextureButton" parent="." unique_id=1958814663]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 31.0
+offset_right = 354.0
+offset_bottom = 211.0
+texture_normal = ExtResource("2_e0xh6")
+
+[connection signal="toggled" from="dysFont" to="." method="_on_dys_font_toggled"]
+[connection signal="toggled" from="bgMusic" to="." method="_on_bg_music_toggled"]
+[connection signal="toggled" from="sfxVol" to="." method="_on_sfx_vol_toggled"]
+[connection signal="pressed" from="saveSettingsBtn" to="." method="_on_save_settings_pressed"]
+[connection signal="pressed" from="cancelSettingsBtn" to="." method="_on_cancel_settings_pressed"]
+[connection signal="pressed" from="backBtn" to="." method="_on_back_btn_pressed"]
