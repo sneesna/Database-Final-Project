@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="2_sro47"]
 [ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_yktu5"]
 [ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_puoa2"]
+[ext_resource type="Script" uid="uid://c4vvsebaxb61g" path="res://Scripts/ButtonSFX.gd" id="5_yktu5"]
+[ext_resource type="AudioStream" uid="uid://cjvm38d7utiro" path="res://Assets/audio/select-sfx.mp3" id="6_puoa2"]
 
 [node name="Control" type="Control" unique_id=1568385316]
 layout_mode = 3
@@ -54,6 +56,7 @@ offset_right = 1099.0
 offset_bottom = 862.0
 texture_normal = ExtResource("3_yktu5")
 texture_hover = ExtResource("4_puoa2")
+script = ExtResource("5_yktu5")
 
 [node name="error_label" type="Label" parent="." unique_id=117703604]
 layout_mode = 0
@@ -74,6 +77,8 @@ offset_bottom = 199.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_yktu5")
 texture_hover = ExtResource("4_puoa2")
+script = ExtResource("5_yktu5")
+pressed_sound = ExtResource("6_puoa2")
 
 [node name="back_label" type="Label" parent="." unique_id=529298611]
 layout_mode = 0

@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="1_c2hp5"]
 [ext_resource type="Script" uid="uid://dd5bcfc1x0dts" path="res://Scripts/settings_menu.gd" id="1_e0xh6"]
 [ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="2_e0xh6"]
+[ext_resource type="Script" uid="uid://c4vvsebaxb61g" path="res://Scripts/ButtonSFX.gd" id="4_eiqpt"]
+[ext_resource type="AudioStream" uid="uid://cjvm38d7utiro" path="res://Assets/audio/select-sfx.mp3" id="5_hmqyy"]
 
 [node name="Control" type="Control" unique_id=222101917]
 layout_mode = 3
@@ -58,6 +60,8 @@ offset_top = 650.0
 offset_right = 1362.0
 offset_bottom = 830.0
 texture_normal = ExtResource("2_e0xh6")
+script = ExtResource("4_eiqpt")
+pressed_sound = ExtResource("5_hmqyy")
 
 [node name="cancelSettingsBtn" type="TextureButton" parent="." unique_id=331738799]
 layout_mode = 0
@@ -66,6 +70,8 @@ offset_top = 650.0
 offset_right = 896.0
 offset_bottom = 830.0
 texture_normal = ExtResource("2_e0xh6")
+script = ExtResource("4_eiqpt")
+pressed_sound = ExtResource("5_hmqyy")
 
 [node name="backBtn" type="TextureButton" parent="." unique_id=1958814663]
 layout_mode = 0
@@ -74,6 +80,8 @@ offset_top = 31.0
 offset_right = 354.0
 offset_bottom = 211.0
 texture_normal = ExtResource("2_e0xh6")
+script = ExtResource("4_eiqpt")
+pressed_sound = ExtResource("5_hmqyy")
 
 [connection signal="toggled" from="dysFont" to="." method="_on_dys_font_toggled"]
 [connection signal="toggled" from="bgMusic" to="." method="_on_bg_music_toggled"]
