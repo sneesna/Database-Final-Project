@@ -4,8 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="1_xvobe"]
 [ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_qaei5"]
 [ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_ldouh"]
-[ext_resource type="Script" uid="uid://c4vvsebaxb61g" path="res://Scripts/ButtonSFX.gd" id="5_ldouh"]
-[ext_resource type="AudioStream" uid="uid://cjvm38d7utiro" path="res://Assets/audio/select-sfx.mp3" id="6_67k4m"]
 
 [node name="Leaderboard" type="Control" unique_id=2124565444]
 layout_mode = 3
@@ -258,8 +256,6 @@ offset_bottom = 199.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_qaei5")
 texture_hover = ExtResource("4_ldouh")
-script = ExtResource("5_ldouh")
-pressed_sound = ExtResource("6_67k4m")
 
 [node name="back_label" type="Label" parent="." unique_id=1832843866]
 layout_mode = 0

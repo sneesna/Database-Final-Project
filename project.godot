@@ -12,7 +12,7 @@ config_version=5
 
 config/name="DBProject"
 run/main_scene="uid://p6pxpjn2yitn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Placeholder/icon.svg"
 
 [audio]
@@ -24,16 +24,11 @@ buses/default_bus_layout="uid://btpi3qip6mns2"
 Global="*uid://dsoy2301ix4cf"
 Music="*uid://b5rsf011uw8js"
 Sfx="*uid://cyhrujvgwwofd"
-AudioManager="*uid://blv10541v3lee"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-
-[dotnet]
-
-project/assembly_name="DBProject"
 
 [physics]
 

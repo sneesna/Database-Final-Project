@@ -4,8 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="2_bqney"]
 [ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_gd6cd"]
 [ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_tndk6"]
-[ext_resource type="Script" uid="uid://c4vvsebaxb61g" path="res://Scripts/ButtonSFX.gd" id="5_bqney"]
-[ext_resource type="AudioStream" uid="uid://cjvm38d7utiro" path="res://Assets/audio/select-sfx.mp3" id="6_gd6cd"]
 
 [node name="Control" type="Control" unique_id=1596942585]
 layout_mode = 3
@@ -41,8 +39,6 @@ offset_right = 1115.0
 offset_bottom = 483.0
 texture_normal = ExtResource("3_gd6cd")
 texture_hover = ExtResource("4_tndk6")
-script = ExtResource("5_bqney")
-pressed_sound = ExtResource("6_gd6cd")
 
 [node name="signup" type="TextureButton" parent="." unique_id=2066188632]
 layout_mode = 0
@@ -52,8 +48,6 @@ offset_right = 1113.0
 offset_bottom = 725.0
 texture_normal = ExtResource("3_gd6cd")
 texture_hover = ExtResource("4_tndk6")
-script = ExtResource("5_bqney")
-pressed_sound = ExtResource("6_gd6cd")
 
 [node name="guest" type="TextureButton" parent="." unique_id=1411353174]
 layout_mode = 0
@@ -63,10 +57,6 @@ offset_right = 1113.0
 offset_bottom = 959.0
 texture_normal = ExtResource("3_gd6cd")
 texture_hover = ExtResource("4_tndk6")
-script = ExtResource("5_bqney")
-pressed_sound = ExtResource("6_gd6cd")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=972363774]
 
 [connection signal="pressed" from="login" to="." method="_on_login_pressed"]
 [connection signal="pressed" from="signup" to="." method="_on_signup_pressed"]
