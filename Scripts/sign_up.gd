@@ -7,6 +7,7 @@ func _ready() -> void:
 	account_db.path = "res://Databases/accounts.db"
 
 func _on_submit_button_pressed() -> void:
+	Sfx.play()
 	# Get inputted username
 	var username = $user_input.text
 	
@@ -72,4 +73,5 @@ func parameterize(input) -> String:
 	return input
 
 func _on_back_button_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Signup_Screen.tscn")

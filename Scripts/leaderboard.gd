@@ -105,4 +105,5 @@ func fill_scores() -> void:
 		$VBox/rank_10/score.text = str(account_db.query_result[9]["Score"])
 
 func _on_back_button_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")

@@ -7,6 +7,7 @@ func _ready() -> void:
 	account_db.path = "res://Databases/accounts.db"
 
 func _on_submit_button_pressed() -> void:
+	Sfx.play()
 	# Receive username and password
 	var username = $user_input.text
 	var password = $pass_input.text
@@ -66,4 +67,5 @@ func _on_submit_button_pressed() -> void:
 
 # Return to login screen without doing anything
 func _on_back_button_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Signup_Screen.tscn")

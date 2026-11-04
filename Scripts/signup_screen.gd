@@ -9,13 +9,16 @@ func _ready() -> void:
 
 # When login button pressed, go to login scene
 func _on_login_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Log_In.tscn")
 
 # When signup button pressed, go to signup scene
 func _on_signup_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Sign_Up.tscn")
 
 # When guest button pressed, skip to main menu screen
 # User ID stays 0 (guest)
 func _on_guest_pressed() -> void:
+	Sfx.play()
 	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
