@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cr2cr4hf0oeg"]
+
+[ext_resource type="Texture2D" uid="uid://davcj2bflccuv" path="res://Assets/Placeholder/black-bg.png" id="1_i8h6y"]
+[ext_resource type="Script" uid="uid://8pjjj457hwdp" path="res://Scripts/credits.gd" id="1_uy3b0"]
+[ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_iynit"]
+[ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_f64u0"]
+
+[node name="Credits" type="Node2D" unique_id=701459768]
+script = ExtResource("1_uy3b0")
+
+[node name="BlackBg" type="Sprite2D" parent="." unique_id=786352467]
+position = Vector2(961, 541)
+texture = ExtResource("1_i8h6y")
+
+[node name="title_lbl" type="RichTextLabel" parent="." unique_id=1731031817]
+offset_left = 865.0
+offset_top = 136.0
+offset_right = 1042.0
+offset_bottom = 212.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Credits"
+
+[node name="backBtn" type="TextureButton" parent="." unique_id=1370334273]
+offset_left = 39.0
+offset_top = 30.0
+offset_right = 359.0
+offset_bottom = 210.0
+texture_normal = ExtResource("3_iynit")
+texture_hover = ExtResource("4_f64u0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1602806645]
+offset_left = 472.0
+offset_top = 262.0
+offset_right = 1394.0
+offset_bottom = 883.0
+theme_override_font_sizes/normal_font_size = 35
+text = "Team Members: []
+Art:[]
+Music and SFX:[]"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="backBtn" to="." method="_on_back_btn_pressed"]

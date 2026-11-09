@@ -93,14 +93,33 @@ texture_hover = ExtResource("4_1edw4")
 
 [node name="settings_label" type="Label" parent="." unique_id=198044409]
 layout_mode = 0
-offset_left = 438.0
-offset_top = 688.0
-offset_right = 723.0
-offset_bottom = 755.0
+offset_left = 1726.0
+offset_top = 702.0
+offset_right = 2011.0
+offset_bottom = 769.0
 theme_override_font_sizes/font_size = 48
-text = "leaderboard"
+text = "settings"
+
+[node name="credits_button" type="TextureButton" parent="." unique_id=720671275]
+layout_mode = 0
+offset_left = 1402.0
+offset_top = 860.0
+offset_right = 1722.0
+offset_bottom = 1040.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="settings_label2" type="Label" parent="." unique_id=191516340]
+layout_mode = 0
+offset_left = 1743.0
+offset_top = 918.0
+offset_right = 2028.0
+offset_bottom = 985.0
+theme_override_font_sizes/font_size = 48
+text = "credits"
 
 [connection signal="pressed" from="logout_button" to="." method="_on_logout_button_pressed"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="leaderboard_button" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="credits_button" to="." method="_on_credits_button_pressed"]
