@@ -51,6 +51,15 @@ offset_bottom = 341.0
 button_pressed = true
 text = "SFX"
 
+[node name="blipsVol" type="CheckButton" parent="." unique_id=1042579198]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 339.0
+offset_right = 1245.0
+offset_bottom = 390.0
+button_pressed = true
+text = "Blips"
+
 [node name="saveSettingsBtn" type="TextureButton" parent="." unique_id=1884125797]
 layout_mode = 0
 offset_left = 1042.0
@@ -78,6 +87,7 @@ texture_normal = ExtResource("2_e0xh6")
 [connection signal="toggled" from="dysFont" to="." method="_on_dys_font_toggled"]
 [connection signal="toggled" from="bgMusic" to="." method="_on_bg_music_toggled"]
 [connection signal="toggled" from="sfxVol" to="." method="_on_sfx_vol_toggled"]
+[connection signal="toggled" from="blipsVol" to="." method="_on_blips_vol_toggled"]
 [connection signal="pressed" from="saveSettingsBtn" to="." method="_on_save_settings_pressed"]
 [connection signal="pressed" from="cancelSettingsBtn" to="." method="_on_cancel_settings_pressed"]
 [connection signal="pressed" from="backBtn" to="." method="_on_back_btn_pressed"]

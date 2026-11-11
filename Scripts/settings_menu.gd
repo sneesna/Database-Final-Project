@@ -2,24 +2,27 @@ extends Control
 
 var music = Global.music_off
 var sfx_off = Global.sfx_off
+var blips_off = Global.blips_off
 var bgBtnState = Global.bgMusic_btn
 var sfxBtnState = Global.sfx_btn
+var blipsBtnState = Global.blips_btn
 var fontBtnState = Global.font_on
 var fontState = Global.font_btn
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	#volumes
 	$bgMusic.button_pressed = Global.bgMusic_btn
 	$sfxVol.button_pressed = Global.sfx_btn
+	$blipsVol.button_pressed = Global.blips_btn
 	$dysFont.button_pressed = Global.font_on
 	pass
-	
+
 	#set the actual volumes of the back and click sfx
 	#var sfxVol = 1*(Global.masterVolume/100)*(Global.sfxVolume/100)
 	#$clickSFX.set_volume_linear(sfxVol)
 	#$backSFX.set_volume_linear(sfxVol)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 #Travel back to menu
@@ -41,24 +44,30 @@ func _on_cancel_settings_pressed() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),Global.sfx_off)
 	#AudioManager.play_sound(Global.sfxSound)
 	
+	blips_off = Global.blips_off
+	$blipsVol.button_pressed = blipsBtnState
+	
 	fontBtnState = Global.font_on
 	$dysFont.button_pressed = fontBtnState
 	ThemeDB.get_default_theme().default_font = fontState
 	
 	Sfx.play()
-	#$bgMusic.value = Global.musicVolume
-	#$sfxVol.value = Global.sfxVolume
+	##$bgMusic.value = Global.musicVolume
+	##$sfxVol.value = Global.sfxVolume
 
 func _on_save_settings_pressed() -> void:
 	
 	#save settings to the global variables
 	Global.music_off = music
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),Global.music_off)
-	bgBtnState = $bgMusic.button_pressed 
+	bgBtnState = $bgMusic.button_pressed
 	
 	Global.sfx_off = sfx_off
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),Global.sfx_off)
-	sfxBtnState = $sfxVol.button_pressed 
+	sfxBtnState = $sfxVol.button_pressed
+	
+	Global.blips_off = blips_off
+	blipsBtnState = $blipsVol.button_pressed
 	
 	Global.font_on = fontBtnState
 	ThemeDB.get_default_theme().default_font = fontState
@@ -70,8 +79,8 @@ func _on_save_settings_pressed() -> void:
 	Sfx.play()
 	#recalculating the volume
 	#var sfxVol = 1*(Global.masterVolume/100)*(Global.sfxVolume/100)
-	#$clickSFX.set_volume_linear(sfxVol)
-	#$backSFX.set_volume_linear(sfxVol)
+	##$clickSFX.set_volume_linear(sfxVol)
+	##$backSFX.set_volume_linear(sfxVol)
 """
 #Larger Font Size Toggle
 func _on_check_button_toggled(toggled_on: bool) -> void:
@@ -83,14 +92,14 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	#var score_values_theme = preload("res://scoreboard_rank_theme.tres")
 	#var results_label_theme = preload("res://results_label_theme.tres")
 	#var results_text_theme = preload("res://results_text_theme.tres")
-	
+
 	if(toggled_on == true):
 		settings_theme.set_font_size("font_size", "Label", 34)
 		settings_theme.set_font_size("font_size", "CheckButton", 34)
 		quiz_theme.set_font_size("normal_font_size", "RichTextLabel", 35)
 		score_values_theme.set_font_size("font_size", "Label", 36)
 		results_label_theme.set_font_size("normal_font_size", "RichTextLabel", 50)
-		results_label_theme.set_font_size("normal_font_size", "RichTextLabel", 38)
+		results_label_theme.set_font_size("normal_font_size", 38)
 		
 	else:
 		settings_theme.set_font_size("font_size", "Label", 24)
@@ -99,6 +108,7 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 		score_values_theme.set_font_size("font_size", "Label", 26)
 		results_label_theme.set_font_size("normal_font_size", "RichTextLabel", 40)
 		results_text_theme.set_font_size("normal_font_size", "RichTextLabel", 28)
+
 """
 
 #Dyslexia Font Toggle
@@ -109,6 +119,7 @@ func _on_dys_font_toggled(toggled_on: bool) -> void:
 		fontState = Global.dyslexiaFont
 		ThemeDB.get_default_theme().default_font = fontState
 	else:
+		
 		fontBtnState = false
 		fontState = null
 		ThemeDB.get_default_theme().default_font = fontState
@@ -127,8 +138,8 @@ func _on_bg_music_toggled(toggled_on: bool) -> void:
 		music = false
 		Global.bgMusic_btn = toggled_on
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),music)
-
-		pass # Replace with function body.
+	
+	pass # Replace with function body.
 
 
 func _on_sfx_vol_toggled(toggled_on: bool) -> void:
@@ -143,5 +154,17 @@ func _on_sfx_vol_toggled(toggled_on: bool) -> void:
 		sfx_off = false
 		Global.sfx_btn = toggled_on
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"),sfx_off)
+	
+	pass # Replace with function body.
 
-		pass # Replace with function body.
+
+func _on_blips_vol_toggled(toggled_on: bool) -> void:
+	Sfx.play()
+	if (toggled_on == false):
+		blips_off = true
+		Global.blips_btn = toggled_on
+	else:
+		blips_off = false
+		Global.blips_btn = toggled_on
+	
+	pass # Replace with function body.
