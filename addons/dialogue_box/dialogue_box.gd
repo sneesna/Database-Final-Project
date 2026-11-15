@@ -18,7 +18,7 @@ const FONT_SIZE_VARIANTS = ["normal_font_size", "bold_font_size", "italics_font_
 	"Hello! Welcome to the game.",
 	"Press Next, Enter, or the gamepad accept button to keep going."
 ]
-@export var char_image: Texture2D
+@export var char_image: Texture2D = preload("res://addons/dialogue_box/assets/character_placeholder.png")
 @export var auto_start = true
 # Set this to 0 to show all the text at once.
 @export_range(0.0, 200.0, 1.0) var characters_per_second = 25.0
@@ -33,6 +33,12 @@ const FONT_SIZE_VARIANTS = ["normal_font_size", "bold_font_size", "italics_font_
 @export var reveal_text = "Show all"
 @export var next_text = "Next"
 @export var close_text = "Close"
+
+@export_group("Talking animation")
+@export var animate_portrait = true
+@export_range(0.0, 0.1, 0.005) var talk_squish = 0.025
+# rotation is in degrees, keep it small
+@export_range(0.0, 5.0, 0.1) var talk_rotation = 1.0
 
 @export_group("Settings integration")
 # settings from Global, if the project has it
@@ -52,6 +58,7 @@ var char_index = 0
 var is_active = false
 
 var _ui: Control
+var _layout_margins: MarginContainer
 var _name_label: Label
 var _name_box: PanelContainer
 var _portrait: TextureRect
@@ -67,22 +74,31 @@ var _generation = 0
 var _parsed_text = ""
 var _effective_blips_off = false
 var _effective_sfx_off = false
+var _talk_time = 0.0
+var _layout_queued = false
+var _updating_layout = false
+var _initial_fit_done = false
 
 
 func _ready() -> void:
-	if size == Vector2.ZERO:
-		set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_build_ui()
-	resized.connect(_update_layout)
-	_update_layout()
+	# keep resize callbacks separate from building the UI
+	if resized.is_connected(_update_layout):
+		resized.disconnect(_update_layout)
+	if not resized.is_connected(_queue_layout):
+		resized.connect(_queue_layout)
+	if not _header.resized.is_connected(_queue_layout):
+		_header.resized.connect(_queue_layout)
+	if get_viewport().size_changed.is_connected(_fit_to_screen):
+		get_viewport().size_changed.disconnect(_fit_to_screen)
 	update_settings()
+	set_process(false)
 	if Engine.is_editor_hint():
-		_name_label.text = char_name
-		_text.text = dialogue_lines[0] if not dialogue_lines.is_empty() else ""
-		_portrait.texture = char_image
-		_portrait.visible = char_image != null
+		_update_preview()
+		_fit_to_screen.call_deferred()
 		return
+	_fit_to_screen()
 	_timer.timeout.connect(_on_type_timer_timeout)
 	_next_button.pressed.connect(_on_next_button_pressed)
 	visibility_changed.connect(_on_visibility_changed)
@@ -92,12 +108,81 @@ func _ready() -> void:
 		hide()
 
 
+func _fit_to_screen() -> void:
+	if _initial_fit_done or not is_inside_tree():
+		return
+	# fit once when added, then keep any manual placement
+	_initial_fit_done = true
+	# do not inherit the position or scale of a background sprite
+	top_level = true
+	if anchor_left != 0.0 or anchor_top != 0.0 or anchor_right != 0.0 or anchor_bottom != 0.0:
+		set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_KEEP_SIZE)
+	if position != Vector2.ZERO:
+		position = Vector2.ZERO
+	if scale != Vector2.ONE:
+		scale = Vector2.ONE
+	if rotation != 0.0:
+		rotation = 0.0
+	var screen_size = get_viewport_rect().size
+	if Engine.is_editor_hint():
+		screen_size = Vector2(
+			ProjectSettings.get_setting("display/window/size/viewport_width", 1152),
+			ProjectSettings.get_setting("display/window/size/viewport_height", 648)
+		)
+	if size != screen_size:
+		size = screen_size
+	_queue_layout()
+
+
+func _queue_layout() -> void:
+	if _layout_queued or _updating_layout or not is_inside_tree():
+		return
+	_layout_queued = true
+	_update_layout.call_deferred()
+
+
+func _update_preview() -> void:
+	_name_label.text = char_name
+	_text.text = dialogue_lines[0] if not dialogue_lines.is_empty() else ""
+	_portrait.texture = char_image
+	_portrait.visible = char_image != null
+	_name_box.visible = not char_name.strip_edges().is_empty()
+	_header.visible = _name_box.visible
+
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	if not animate_portrait or not is_typing or not is_active or not is_visible_in_tree() or _portrait.texture == null:
+		_reset_portrait()
+		return
+	# a little squish and tilt while the text is appearing
+	_talk_time += delta * 10.0
+	var squish = sin(_talk_time) * talk_squish
+	_portrait.pivot_offset = Vector2(_portrait.size.x / 2.0, _portrait.size.y)
+	_portrait.scale = Vector2(1.0 + squish, 1.0 - squish)
+	_portrait.rotation_degrees = sin(_talk_time * 0.5) * talk_rotation
+
+
+func _reset_portrait() -> void:
+	_talk_time = 0.0
+	if is_instance_valid(_portrait):
+		_portrait.scale = Vector2.ONE
+		_portrait.rotation_degrees = 0.0
+
+
 func _build_ui() -> void:
 	# Add the layout for both the scene and the custom DialogueBox node.
 	_ui = get_node_or_null("UI")
+	# an editor script reload can leave the old layout behind
+	if _ui != null and not _ui.has_node("LayoutMargins"):
+		remove_child(_ui)
+		_ui.queue_free()
+		_ui = null
 	if _ui == null:
 		_ui = UI_SCENE.instantiate()
 		add_child(_ui)
+	_layout_margins = _ui.get_node("%LayoutMargins")
 	_name_label = _ui.get_node("%NameLabel")
 	_name_box = _ui.get_node("%NameBox")
 	_portrait = _ui.get_node("%Portrait")
@@ -112,27 +197,41 @@ func _build_ui() -> void:
 	style.texture = background_texture
 	_panel.add_theme_stylebox_override("panel", style)
 	_text.bbcode_enabled = bbcode_enabled
+	_text.scroll_active = false
 	_next_button.text = tr(next_text)
 	# keyboard input is handled below
 	_next_button.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 
 
 func _update_layout() -> void:
-	if not is_instance_valid(_ui):
+	_layout_queued = false
+	if _updating_layout or not is_inside_tree():
 		return
-	var horizontal_margin = int(clampf(size.x * 0.08, 12.0, 160.0))
-	var vertical_margin = int(clampf(size.y * 0.035, 12.0, 38.0))
-	_ui.add_theme_constant_override("margin_left", horizontal_margin)
-	_ui.add_theme_constant_override("margin_right", horizontal_margin)
-	_ui.add_theme_constant_override("margin_top", vertical_margin)
-	_ui.add_theme_constant_override("margin_bottom", vertical_margin)
+	# wait for initialization; never rebuild nodes from a resize callback
+	if not is_instance_valid(_layout_margins) or not is_instance_valid(_portrait) or not is_instance_valid(_panel) or not is_instance_valid(_header):
+		return
+	_updating_layout = true
+	var horizontal_margin = int(clampf(size.x * 0.06, 20.0, 120.0))
+	var vertical_margin = int(clampf(size.y * 0.05, 18.0, 54.0))
+	var margins = {"left": horizontal_margin, "right": horizontal_margin, "top": vertical_margin, "bottom": vertical_margin}
+	for side in margins:
+		var margin_name = "margin_" + side
+		if _layout_margins.get_theme_constant(margin_name) != margins[side]:
+			_layout_margins.add_theme_constant_override(margin_name, margins[side])
 	_panel.custom_minimum_size.y = clampf(size.y * 0.32, 220.0, 300.0)
-	var portrait_size = clampf(size.y * 0.1, 48.0, 96.0)
-	_portrait.custom_minimum_size = Vector2(portrait_size, portrait_size)
-	# Leave room for the square decorations in the background's corners.
-	var padding = 40
-	for side in ["left", "top", "right", "bottom"]:
-		_content.add_theme_constant_override("margin_" + side, padding)
+	# the name bar only needs enough width for the current name
+	var name_font = _name_label.get_theme_font("font")
+	var name_size = _name_label.get_theme_font_size("font_size")
+	var name_width = name_font.get_string_size(_name_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, name_size).x + 40.0
+	_name_box.custom_minimum_size.x = minf(name_width, maxf(0.0, size.x - horizontal_margin * 2.0))
+	# leave room above the boxes for the character's face
+	var name_height = _header.get_combined_minimum_size().y if _header.visible else 0.0
+	var headroom = maxf(80.0, size.y - vertical_margin - _panel.get_combined_minimum_size().y - name_height - 10.0)
+	var portrait_size = minf(size.y * 0.78, minf(size.x * 0.9, headroom * 1.7))
+	_portrait.size = Vector2(portrait_size, portrait_size)
+	_portrait.position = Vector2(-portrait_size * 0.12, minf(size.y * 0.12, maxf(0.0, headroom - portrait_size * 0.55)))
+	_portrait.pivot_offset = Vector2(portrait_size / 2.0, portrait_size)
+	_updating_layout = false
 
 
 # Call this after changing the font or sound settings.
@@ -158,6 +257,8 @@ func update_settings() -> void:
 	_next_button.add_theme_font_size_override("font_size", selected_size if selected_size > 0 else button_font_size)
 	for variant in FONT_SIZE_VARIANTS:
 		_text.add_theme_font_size_override(variant, selected_size if selected_size > 0 else text_font_size)
+	if _initial_fit_done:
+		_queue_layout()
 
 
 func _update_sound_settings() -> void:
@@ -198,7 +299,7 @@ func start_dialogue(new_name: String, new_lines: Array, new_image: Texture2D = n
 	_name_box.visible = not char_name.strip_edges().is_empty()
 	_portrait.texture = char_image
 	_portrait.visible = char_image != null
-	_header.visible = _name_box.visible or _portrait.visible
+	_header.visible = _name_box.visible
 	_text.bbcode_enabled = bbcode_enabled
 	is_active = true
 	show()
@@ -235,6 +336,7 @@ func show_current_line() -> void:
 	if characters_per_second <= 0.0 or _text.get_total_character_count() == 0:
 		reveal_current_line()
 	else:
+		set_process(true)
 		_timer.start(1.0 / characters_per_second)
 
 
@@ -287,6 +389,8 @@ func _end_dialogue(cancelled: bool) -> void:
 
 func _stop_typing() -> void:
 	is_typing = false
+	set_process(false)
+	_reset_portrait()
 	_timer.stop()
 	_blip.stop()
 

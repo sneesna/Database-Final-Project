@@ -85,7 +85,26 @@ corner_radius_top_right = 6
 corner_radius_bottom_left = 6
 corner_radius_bottom_right = 6
 
-[node name="UI" type="MarginContainer"]
+[node name="UI" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LayoutMargins" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -97,49 +116,40 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Layout" type="VBoxContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="LayoutMargins"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="Spacer" type="Control" parent="Layout"]
+[node name="Spacer" type="Control" parent="LayoutMargins/Layout"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Header" type="HBoxContainer" parent="Layout"]
+[node name="Header" type="HBoxContainer" parent="LayoutMargins/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 14
 
-[node name="Portrait" type="TextureRect" parent="Layout/Header"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(72, 72)
-layout_mode = 2
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="NameBox" type="PanelContainer" parent="Layout/Header"]
+[node name="NameBox" type="PanelContainer" parent="LayoutMargins/Layout/Header"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBox_name")
 
-[node name="NameLabel" type="Label" parent="Layout/Header/NameBox"]
+[node name="NameLabel" type="Label" parent="LayoutMargins/Layout/Header/NameBox"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_font_sizes/font_size = 30
 text = "Character"
-text_overrun_behavior = 3
+autowrap_mode = 3
 
-[node name="Panel" type="PanelContainer" parent="Layout"]
+[node name="Panel" type="PanelContainer" parent="LayoutMargins/Layout"]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(0, 250)
@@ -147,21 +157,21 @@ layout_mode = 2
 mouse_filter = 0
 theme_override_styles/panel = SubResource("StyleBox_frame")
 
-[node name="Content" type="MarginContainer" parent="Layout/Panel"]
+[node name="Content" type="MarginContainer" parent="LayoutMargins/Layout/Panel"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-theme_override_constants/margin_left = 28
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 28
-theme_override_constants/margin_bottom = 28
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="TextAndActions" type="VBoxContainer" parent="Layout/Panel/Content"]
+[node name="TextAndActions" type="VBoxContainer" parent="LayoutMargins/Layout/Panel/Content"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/separation = 8
 
-[node name="DialogueText" type="RichTextLabel" parent="Layout/Panel/Content/TextAndActions"]
+[node name="DialogueText" type="RichTextLabel" parent="LayoutMargins/Layout/Panel/Content/TextAndActions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -171,15 +181,16 @@ theme_override_colors/default_color = Color(0.24, 0.17, 0.08, 1)
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "Hello! Welcome to the game."
+scroll_active = false
 scroll_following_visible_characters = true
 visible_characters_behavior = 1
 
-[node name="Actions" type="HBoxContainer" parent="Layout/Panel/Content/TextAndActions"]
+[node name="Actions" type="HBoxContainer" parent="LayoutMargins/Layout/Panel/Content/TextAndActions"]
 layout_mode = 2
 mouse_filter = 1
 alignment = 2
 
-[node name="NextButton" type="Button" parent="Layout/Panel/Content/TextAndActions/Actions"]
+[node name="NextButton" type="Button" parent="LayoutMargins/Layout/Panel/Content/TextAndActions/Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(116, 0)
 layout_mode = 2

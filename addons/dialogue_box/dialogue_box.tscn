@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://addons/dialogue_box/dialogue_box_ui.tscn" id="2_ui"]
 
 [node name="DialogueBox" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
