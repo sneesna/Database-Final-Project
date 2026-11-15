@@ -1,0 +1,202 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Texture2D" path="res://addons/dialogue_box/assets/dialogue_background.webp" id="1_background"]
+[ext_resource type="AudioStream" path="res://addons/dialogue_box/blip.wav" id="2_blip"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBox_frame"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_background")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_name"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(0.24, 0.17, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.78, 0.25, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button"]
+content_margin_left = 18.0
+content_margin_top = 7.0
+content_margin_right = 18.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.83, 0.36, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.79, 0.55, 0.11, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_hover"]
+content_margin_left = 18.0
+content_margin_top = 7.0
+content_margin_right = 18.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.9, 0.56, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.79, 0.55, 0.11, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_pressed"]
+content_margin_left = 18.0
+content_margin_top = 7.0
+content_margin_right = 18.0
+content_margin_bottom = 7.0
+bg_color = Color(0.9, 0.68, 0.24, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.21, 0.09, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[node name="UI" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Spacer" type="Control" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Header" type="HBoxContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="Portrait" type="TextureRect" parent="Layout/Header"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameBox" type="PanelContainer" parent="Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_name")
+
+[node name="NameLabel" type="Label" parent="Layout/Header/NameBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 30
+text = "Character"
+text_overrun_behavior = 3
+
+[node name="Panel" type="PanelContainer" parent="Layout"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBox_frame")
+
+[node name="Content" type="MarginContainer" parent="Layout/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
+
+[node name="TextAndActions" type="VBoxContainer" parent="Layout/Panel/Content"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 8
+
+[node name="DialogueText" type="RichTextLabel" parent="Layout/Panel/Content/TextAndActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Hello! Welcome to the game."
+scroll_following_visible_characters = true
+visible_characters_behavior = 1
+
+[node name="Actions" type="HBoxContainer" parent="Layout/Panel/Content/TextAndActions"]
+layout_mode = 2
+mouse_filter = 1
+alignment = 2
+
+[node name="NextButton" type="Button" parent="Layout/Panel/Content/TextAndActions/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_hover_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_pressed_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_colors/font_focus_color = Color(0.24, 0.17, 0.08, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBox_button")
+theme_override_styles/hover = SubResource("StyleBox_hover")
+theme_override_styles/pressed = SubResource("StyleBox_pressed")
+theme_override_styles/focus = SubResource("StyleBox_focus")
+text = "Next"
+
+[node name="TypeTimer" type="Timer" parent="."]
+wait_time = 0.04
+
+[node name="BlipSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_blip")
