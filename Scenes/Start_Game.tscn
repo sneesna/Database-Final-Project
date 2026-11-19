@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://beu1phpvwo814"]
+
+[ext_resource type="Script" uid="uid://cevjc1s0s12ys" path="res://Scripts/start_game.gd" id="1_fkhhx"]
+[ext_resource type="Script" uid="uid://bhirqxmpbhlji" path="res://addons/dialogue_box/dialogue_box.gd" id="1_jqpuc"]
+
+[node name="StartGame" type="Node2D" unique_id=1816359564]
+script = ExtResource("1_fkhhx")
+
+[node name="DialogueBox" type="Control" parent="." unique_id=44197453]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_jqpuc")
+auto_start = false
+metadata/_custom_type_script = "uid://bhirqxmpbhlji"

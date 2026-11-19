@@ -16,8 +16,15 @@ var sfx_btn = true
 
 var blips_off = false
 var blips_btn = true
+
 # User ID defaults to 0 (guest)
 var userID = 0
+
+# Game mode default to 1 (sql injection variant 1)
+var gameMode = 1
+
+# How many total questions did you answer? for score, default 0
+var questionsAns = 0
 
 # Score defaults to 0
 var score = 0

@@ -118,8 +118,27 @@ offset_bottom = 985.0
 theme_override_font_sizes/font_size = 48
 text = "credits"
 
+[node name="game_button" type="TextureButton" parent="." unique_id=1417093285]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 231.0
+offset_right = 411.0
+offset_bottom = 411.0
+texture_normal = ExtResource("3_xvotp")
+texture_hover = ExtResource("4_1edw4")
+
+[node name="game_label" type="Label" parent="." unique_id=360021408]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 285.0
+offset_right = 715.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 48
+text = "start game"
+
 [connection signal="pressed" from="logout_button" to="." method="_on_logout_button_pressed"]
 [connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="leaderboard_button" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="game_button" to="." method="_on_game_button_pressed"]
