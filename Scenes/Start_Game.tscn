@@ -6,6 +6,17 @@
 [node name="StartGame" type="Node2D" unique_id=1816359564]
 script = ExtResource("1_fkhhx")
 
+[node name="DialogueBox2" type="Control" parent="." unique_id=343102654]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_jqpuc")
+auto_start = false
+metadata/_custom_type_script = "uid://bhirqxmpbhlji"
+
 [node name="DialogueBox" type="Control" parent="." unique_id=44197453]
 top_level = true
 layout_mode = 3
