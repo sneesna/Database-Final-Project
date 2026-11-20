@@ -8,6 +8,17 @@ signal line_finished(index: int, text: String)
 signal dialogue_finished
 signal dialogue_cancelled
 
+class Dialogue:
+	signal ended(finished: bool)
+	var speaker: String
+	var lines: Array[String] = []
+	var portrait: Texture2D
+	var result: Variant = null
+
+	func end(finished: bool) -> void:
+		result = finished
+		ended.emit(finished)
+
 const UI_SCENE = preload("res://addons/dialogue_box/dialogue_box_ui.tscn")
 const FONT_VARIANTS = ["normal_font", "bold_font", "italics_font", "bold_italics_font", "mono_font"]
 const FONT_SIZE_VARIANTS = ["normal_font_size", "bold_font_size", "italics_font_size", "bold_italics_font_size", "mono_font_size"]
@@ -69,7 +80,10 @@ var _text: RichTextLabel
 var _next_button: Button
 var _timer: Timer
 var _blip: AudioStreamPlayer
-var _start_requested = false
+var _pending: Array[Dialogue] = []
+var _current: Dialogue
+var _starting_dialogue = false
+var _leaving_tree = false
 var _generation = 0
 var _parsed_text = ""
 var _effective_blips_off = false
@@ -102,7 +116,9 @@ func _ready() -> void:
 	_timer.timeout.connect(_on_type_timer_timeout)
 	_next_button.pressed.connect(_on_next_button_pressed)
 	visibility_changed.connect(_on_visibility_changed)
-	if auto_start or _start_requested:
+	if not _pending.is_empty():
+		_play_next_dialogue()
+	elif auto_start:
 		start_dialogue(char_name, dialogue_lines, char_image)
 	else:
 		hide()
@@ -281,16 +297,41 @@ func _setting(settings: Node, property: StringName, fallback: Variant) -> Varian
 	return fallback
 
 
-# start over from the first line
-func start_dialogue(new_name: String, new_lines: Array, new_image: Texture2D = null) -> void:
-	char_name = new_name
-	dialogue_lines = []
+# wait your turn if another speaker is talking
+func start_dialogue(new_name: String, new_lines: Array, new_image: Texture2D = null) -> bool:
+	if _leaving_tree:
+		return false
+	var dialogue = Dialogue.new()
+	dialogue.speaker = new_name
 	for line in new_lines:
-		dialogue_lines.append(str(line))
-	char_image = new_image
-	if not is_node_ready():
-		_start_requested = true
+		dialogue.lines.append(str(line))
+	dialogue.portrait = new_image
+	_pending.append(dialogue)
+	if is_node_ready():
+		if is_active:
+			_update_prompt()
+		else:
+			_play_next_dialogue()
+	# an empty dialogue can finish right away
+	if dialogue.result != null:
+		return dialogue.result
+	return await dialogue.ended
+
+
+func _play_next_dialogue() -> void:
+	if _starting_dialogue or _current != null:
 		return
+	_starting_dialogue = true
+	while _current == null and not _pending.is_empty():
+		_current = _pending.pop_front()
+		_show_dialogue(_current)
+	_starting_dialogue = false
+
+
+func _show_dialogue(dialogue: Dialogue) -> void:
+	char_name = dialogue.speaker
+	dialogue_lines = dialogue.lines
+	char_image = dialogue.portrait
 	_generation += 1
 	var generation = _generation
 	_stop_typing()
@@ -369,7 +410,15 @@ func finish_dialogue() -> void:
 
 
 func cancel_dialogue() -> void:
-	_end_dialogue(true)
+	var skipped = _pending
+	_pending = []
+	if is_active:
+		_end_dialogue(true)
+	elif _current != null:
+		# a finished signal can cancel the queue between speakers
+		hide()
+	for dialogue in skipped:
+		dialogue.end(false)
 
 
 func _end_dialogue(cancelled: bool) -> void:
@@ -378,13 +427,17 @@ func _end_dialogue(cancelled: bool) -> void:
 	_generation += 1
 	is_active = false
 	_stop_typing()
-	if _next_button.has_focus():
-		_next_button.release_focus()
-	hide()
+	if _pending.is_empty():
+		if _next_button.has_focus():
+			_next_button.release_focus()
+		hide()
 	if cancelled:
 		dialogue_cancelled.emit()
 	else:
 		dialogue_finished.emit()
+	_current.end(not cancelled)
+	_current = null
+	_play_next_dialogue()
 
 
 func _stop_typing() -> void:
@@ -415,7 +468,8 @@ func _on_type_timer_timeout() -> void:
 
 
 func _update_prompt() -> void:
-	var prompt = reveal_text if is_typing else (close_text if current_line == dialogue_lines.size() - 1 else next_text)
+	var last_line = current_line == dialogue_lines.size() - 1 and _pending.is_empty()
+	var prompt = reveal_text if is_typing else (close_text if last_line else next_text)
 	_next_button.text = tr(prompt)
 
 
@@ -445,10 +499,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_visibility_changed() -> void:
-	if not is_visible_in_tree() and is_active:
+	if not is_visible_in_tree() and (is_active or not _pending.is_empty()):
 		cancel_dialogue()
 
 
 func _exit_tree() -> void:
-	if is_instance_valid(_timer):
-		_stop_typing()
+	_leaving_tree = true
+	cancel_dialogue()
+	_leaving_tree = false

@@ -26,11 +26,29 @@ Pass a texture as the third argument to show a portrait:
 dialogue.start_dialogue("Guide", ["Ready to go?"], guide_portrait)
 ```
 
-Leaving out the portrait clears the previous one. An empty character name hides the name box. Starting a new conversation replaces the current one; an empty list finishes immediately.
+Leaving out the portrait clears the previous one when that speaker starts. An empty character name hides the name box. An empty list finishes as soon as its turn comes up.
+
+## Switch speakers from code
+
+Turn off `auto_start` if the script supplies the opening lines. Calls on the same box play in order, so this works in your scene's `_ready()`:
+
+```gdscript
+func _ready() -> void:
+	$DialogueBox.start_dialogue("1st", ["i am the one that goes first"])
+	$DialogueBox.start_dialogue("2nd", ["i run second", "yay"])
+```
+
+Use `await` when the next bit of code should wait for a speaker. It returns `true` when their last line closes or `finish_dialogue()` is called. Cancelling the dialogue returns `false` for that speaker and anyone still waiting.
+
+```gdscript
+if await $DialogueBox.start_dialogue("Judge", ["Court is in session."]):
+	await get_tree().create_timer(1.0).timeout
+	$DialogueBox.start_dialogue("You", ["Ready, Your Honor."])
+```
 
 ## Read and advance
 
-Click **Show all**, press **Enter**, or use the gamepad accept button to reveal the current line. Press again to move to the next line. The last line has a **Close** button.
+Click **Show all**, press **Enter**, or use the gamepad accept button to reveal the current line. Press again to move to the next line or speaker. The final speaker's last line has a **Close** button.
 
 `advance_action` defaults to Godot's `ui_accept`. You can set it to another action from the Input Map. `next_line()` does the same thing from code.
 
@@ -50,7 +68,7 @@ The node has these signals:
 | `dialogue_finished` | The last line closes, or `finish_dialogue()` is called. |
 | `dialogue_cancelled` | `cancel_dialogue()` is called, or an active box is hidden. |
 
-For example, connect `dialogue_finished` to unlock movement or start the next part of a quest. Use `cancel_dialogue()` when the player walks away. Finishing and cancelling both hide the box and stop its typing sounds.
+`dialogue_finished` fires once per speaker. `finish_dialogue()` skips the rest of that speaker's lines and moves to the next speaker. Use `cancel_dialogue()` when the player walks away or you want to clear the whole queue before starting a different conversation.
 
 `is_active`, `is_typing`, and `current_line` are available if you need to check its state.
 
