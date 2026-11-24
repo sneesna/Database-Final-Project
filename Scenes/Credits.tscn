@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://8pjjj457hwdp" path="res://Scripts/credits.gd" id="1_uy3b0"]
 [ext_resource type="Texture2D" uid="uid://b2wmuselgd4j3" path="res://Assets/Placeholder/button.png" id="3_iynit"]
 [ext_resource type="Texture2D" uid="uid://fgwypm0apfar" path="res://Assets/Placeholder/button_hover.png" id="4_f64u0"]
+[ext_resource type="FontFile" uid="uid://ckd4j5wqpfkae" path="res://Assets/fonts/comici.ttf" id="5_iynit"]
 
 [node name="Credits" type="Node2D" unique_id=701459768]
 script = ExtResource("1_uy3b0")
@@ -32,11 +33,38 @@ texture_hover = ExtResource("4_f64u0")
 offset_left = 472.0
 offset_top = 262.0
 offset_right = 1394.0
-offset_bottom = 883.0
-theme_override_font_sizes/normal_font_size = 35
+offset_bottom = 1214.0
+theme_override_font_sizes/normal_font_size = 33
 text = "Team Members: []
 Art:[]
-Music and SFX:[]"
+Music and SFX:[
+Backgorund Music - Custom Ace Attorney Music Set 1 by fanfreak247, CallMeBlue, and AwesomeYears
+Gavel - Gavel - 3 Strikes with room reverb by oddtonic on freesound.org
+Typing - soft_striking_sound by wmyst26 on freesound.org
+Crowd talking - crowd of people talking by SomeoneCool15 - on freesound.org
+Body fall - Body fall.wav by DylanTheFish -- https://freesound.org/s/417994/ -- License: Creative Commons 0
+gasps - small group gasps (before-after clean).wav by Timbre -- https://freesound.org/s/106391/ -- License: Attribution NonCommercial 4.0
+hit - Splat_ish.WAV by Benboncan -- 
+]"
+horizontal_alignment = 1
+
+[node name="Music and SFX" type="RichTextLabel" parent="." unique_id=766867108]
+visible = false
+offset_left = 472.0
+offset_top = 397.0
+offset_right = 1394.0
+offset_bottom = 900.0
+theme_override_fonts/normal_font = ExtResource("5_iynit")
+theme_override_font_sizes/normal_font_size = 23
+text = "Music and SFX:[
+Backgorund Music - Custom Ace Attorney Music Set 1 by fanfreak247, CallMeBlue, and AwesomeYears
+Gavel - Gavel - 3 Strikes with room reverb by oddtonic on freesound.org
+Typing - soft_striking_sound by wmyst26 on freesound.org
+Crowd talking - crowd of people talking by SomeoneCool15 - on freesound.org
+Body fall - Body fall.wav by DylanTheFish -- https://freesound.org/s/417994/ -- License: Creative Commons 0
+gasps - small group gasps (before-after clean).wav by Timbre -- https://freesound.org/s/106391/ -- License: Attribution NonCommercial 4.0
+hit - Splat_ish.WAV by Benboncan -- 
+]"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="backBtn" to="." method="_on_back_btn_pressed"]
