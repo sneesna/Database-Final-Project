@@ -5,3 +5,11 @@ you: (This is the first trial I'm taking on as a newly-fledged prosecutor! But..
 you: (This is a murder case. No matter the outcome, I need to take this seriously and do well.)
 you: The prosecution is ready, Your Honor!
 you: (But ultimately, I'm ready! After all, I have access to the court evidence!)
+pheonix_wrong: The defense is ready, Your Honor.
+judge: Then the court is ready.
+judge: The prosecution, please give your opening statement.
+you: Thank you, Your Honor. The suspect, TEMP, was arrested with links to the scene of the crime.
+you: The prosecution has evidence that he committed this murder.
+you: ... and we have a witness who knows he did it.
+judge: I see... Thank you, Prosecutor. Let's begin, you may call your witness.
+you: Thank you, Your Honor. The prosecution calls the witness that was at the scene.

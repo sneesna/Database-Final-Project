@@ -85,6 +85,10 @@ func _ready() -> void:
 		pass
 	else:
 		pass
+	
+	#replace with the problem specific scenes when ready
+	await Dialogic.timeline_ended
+	get_tree().change_scene_to_file("res://Scenes/middle_game.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

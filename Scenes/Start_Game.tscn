@@ -27,3 +27,11 @@ mouse_filter = 2
 script = ExtResource("1_jqpuc")
 auto_start = false
 metadata/_custom_type_script = "uid://bhirqxmpbhlji"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1818705132]
+offset_left = 627.0
+offset_top = 117.0
+offset_right = 1739.0
+offset_bottom = 778.0
+theme_override_font_sizes/normal_font_size = 72
+text = "WOAH START SCENE"

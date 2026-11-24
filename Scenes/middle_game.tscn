@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b5ka74ill777y"]
+
+[ext_resource type="Script" uid="uid://dsawri15jcdv0" path="res://Scenes/middle_game.gd" id="1_0kvtb"]
+
+[node name="MiddleGame" type="Node2D" unique_id=1547695889]
+script = ExtResource("1_0kvtb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1566054944]
+offset_left = 552.0
+offset_top = 180.0
+offset_right = 1586.0
+offset_bottom = 922.0
+theme_override_font_sizes/normal_font_size = 72
+text = "WOAH MIDDLE SCENE AFTER QUESTIONS"
