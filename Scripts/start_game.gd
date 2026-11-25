@@ -79,16 +79,15 @@ func _ready() -> void:
 		pass
 	if Global.gameMode == 3:
 		pass
-	if Global.gameMode == 4:
-		pass
-	if Global.gameMode == 5:
-		pass
 	else:
 		pass
 	
 	#replace with the problem specific scenes when ready
 	await Dialogic.timeline_ended
-	get_tree().change_scene_to_file("res://Scenes/middle_game.tscn")
+	Global.gameMode = 1
+	print("game mode: ", Global.gameMode)
+	get_tree().change_scene_to_file("res://Scenes/witness_game.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/middle_game.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

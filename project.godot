@@ -31,9 +31,13 @@ Dialogic="*uid://ds2q0uclmolvu"
 directories/dch_directory={
 "judge": "res://Timelines/judge.dch",
 "pheonix_wrong": "res://Timelines/pheonix_wrong.dch",
+"witness1": "res://Timelines/witness1.dch",
 "you": "res://Timelines/you.dch"
 }
 directories/dtl_directory={
+"end": "res://Timelines/end.dtl",
+"middle": "res://Timelines/middle.dtl",
+"sql_inj_wit": "res://Timelines/sql_inj_wit.dtl",
 "start": "res://Timelines/start.dtl"
 }
 layout/style_directory={}

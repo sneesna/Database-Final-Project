@@ -1,0 +1,37 @@
+you: Witness, please state your full name and profession to the court.
+witness1: Hi, I am Siss Adam. I am – er, was – the System Admin for Database Corp.
+you: Witness Adam, please describe to us what you saw.
+witness1: Yes, I was working late for my boss that night.
+witness1: When I went to my boss, Mr. Database, to ask something, he was dead at his desk!
+witness1: As I called 911, I checked through our logs and I noticed some weird entries that were entered.
+you: Weird entries…?
+witness1: Yes. They were from the ticket submission section of our company website. We typically give their contents straight to Mr. Database.
+witness1: What the user entered for the title section didn’t seem normal. It seemed to have words that I commonly use when communicating with Mr. Database’s systems.
+witness1: Sorry, in the chaos I couldn’t remember what exactly it said…
+Question here
+you: (Hm… If user data was collected and put into the company files with strange keywords… What could this mean?)
+- Though the System Admin is worried, plenty of titles for bug reports have obscure words.
+	you: (Oof! While user inputs may have rarer words, if the System Admin is worried, it was probably these words used in an abnormal sequence that were suspicious!
+- It’s possible that the keywords could have impacted Mr. Database.
+	(I’ve got it! What the witness is saying is that the collected data had words that could impact the database.)
+you: I see. Witness Adam, what exactly are the words that you use when communicating with Mr. Database?
+witness1: Oh, I usually use those keywords to see into Mr. Database’s systems. I also remove outdated records with them. Some names also line up with the names of our tables.
+you: (The words that the witness recognizes are those looking at current records and deleting some.)
+you: (I believe that these logs are the key to the case. What could have happened to murder Mr. Database?)
+<Empty Text Event>
+- Looking at current records could have compromised the security of Mr. Database.
+	you: (Oof! While this is definitely true and serious, it couldn’t have murdered Mr. Database on its own!)
+- An important record was deleted that broke Mr. Database’s heart.
+	you: (Oof! Though this could be the case, the damage seems to be more serious…)
+- Many records were deleted across the database in different tables.
+	you:  (Yes, this must be it! It’s possible that the strange log mass-deleted records in many tables permanently, damaging the integrity of Mr. Database and resulting in his death.)\
+	(And the culprit…)
+you: Hm… Witness Adam, you say that you suspect Mr. Attaquer?
+witness1: Yes! You see, he had made an account on our website just two days ago. I was a little worried because I had heard from other corporations that the user under that email was spamming their websites.
+you: Spamming their websites?
+witness1: Yes. Mr. Attaquer would also use strange keywords in other websites’ text boxes, but with different names like he was testing which ones worked.
+witness1: I don’t think he succeeded… Until now.
+you: Do you have these warnings in writing?
+witness1: Yes! We got several emails about it.
+you: The prosecution would like to submit a record of the logs and the emails.
+judge: The court accepts the logs as evidence T-05. The court also accepts the emails as evidence T-06.
