@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cbd2twjtr2yb8"]
+
+[ext_resource type="Script" uid="uid://kd3k151lvfl7" path="res://Scripts/end_lose.gd" id="1_1ovk3"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_box/dialogue_box.tscn" id="1_owo88"]
+
+[node name="EndLose" type="Node2D" unique_id=839867407]
+script = ExtResource("1_1ovk3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1614359023]
+offset_left = 901.0
+offset_top = 84.0
+offset_right = 1570.0
+offset_bottom = 599.0
+theme_override_font_sizes/normal_font_size = 50
+text = "L, you suck lowkey. You're making the project, how did you lose?"
+
+[node name="Control" type="Control" parent="." unique_id=1663378183]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fade" type="ColorRect" parent="Control" unique_id=353320558]
+z_index = 10
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogueBox" parent="Control" unique_id=48384888 instance=ExtResource("1_owo88")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+dialogue_lines = Array[String]([])

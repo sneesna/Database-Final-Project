@@ -34,6 +34,8 @@ directories/dch_directory={
 "you": "res://Timelines/you.dch"
 }
 directories/dtl_directory={
+"end": "res://Timelines/end.dtl",
+"middle": "res://Timelines/middle.dtl",
 "start": "res://Timelines/start.dtl"
 }
 layout/style_directory={}
