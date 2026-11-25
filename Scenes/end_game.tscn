@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbbd26gpof1k2"]
 
 [ext_resource type="Script" uid="uid://beaaxx2djw03n" path="res://Scenes/end_game.gd" id="1_fln83"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_box/dialogue_box.tscn" id="2_tiqjd"]
 
 [node name="EndGame" type="Node2D" unique_id=957974654]
 script = ExtResource("1_fln83")
@@ -12,3 +13,18 @@ offset_right = 1877.0
 offset_bottom = 878.0
 theme_override_font_sizes/normal_font_size = 72
 text = "WOAH END SCENE YIPPEE"
+
+[node name="Control" type="Control" parent="." unique_id=1332624996]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueBox" parent="Control" unique_id=1843481652 instance=ExtResource("2_tiqjd")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+dialogue_lines = Array[String]([])
