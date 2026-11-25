@@ -42,6 +42,9 @@ directories/dtl_directory={
 }
 layout/style_directory={}
 glossary/default_case_sensitive=true
+variables={}
+layout/style_list=[]
+layout/default_style="Default"
 
 [display]
 
