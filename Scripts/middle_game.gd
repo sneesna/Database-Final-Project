@@ -8,7 +8,8 @@ func _ready() -> void:
 	Dialogic.start("middle")
 	
 	await Dialogic.timeline_ended
-	get_tree().change_scene_to_file("res://Scenes/end_game.tscn")
+	get_tree().change_scene_to_file("res://Scenes/suspect_game.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/end_game.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

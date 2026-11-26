@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://u85a40ag4t7k"]
+
+[ext_resource type="Script" uid="uid://drhqw0qqv7u0u" path="res://Scripts/suspect_game.gd" id="1_pydmd"]
+
+[node name="SuspectGame" type="Node2D" unique_id=2027870178]
+script = ExtResource("1_pydmd")

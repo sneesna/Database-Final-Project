@@ -18,8 +18,8 @@ var answerSet = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 var rng = RandomNumberGenerator.new()
 
 #asset loading for answers
-var nonSelect = preload("res://assets/quiz_mode/opt_unselect.png")
-var select = preload("res://assets/quiz_mode/opt_selected.png")
+#var nonSelect = preload("res://assets/quiz_mode/opt_unselect.png")
+#var select = preload("res://assets/quiz_mode/opt_selected.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
