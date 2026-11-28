@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5ka74ill777y"]
 
 [ext_resource type="Script" uid="uid://dsawri15jcdv0" path="res://Scripts/middle_game.gd" id="1_0kvtb"]
+[ext_resource type="PackedScene" path="res://Scenes/Inventory/court_record.tscn" id="record"]
 
 [node name="MiddleGame" type="Node2D" unique_id=1547695889]
 script = ExtResource("1_0kvtb")
@@ -12,3 +13,5 @@ offset_right = 1586.0
 offset_bottom = 922.0
 theme_override_font_sizes/normal_font_size = 72
 text = "WOAH MIDDLE SCENE AFTER QUESTIONS"
+
+[node name="CourtRecord" parent="." instance=ExtResource("record")]

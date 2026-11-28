@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cevjc1s0s12ys" path="res://Scripts/start_game.gd" id="1_fkhhx"]
 [ext_resource type="Script" uid="uid://bhirqxmpbhlji" path="res://addons/dialogue_box/dialogue_box.gd" id="1_jqpuc"]
+[ext_resource type="PackedScene" path="res://Scenes/Inventory/court_record.tscn" id="record"]
 
 [node name="StartGame" type="Node2D" unique_id=1816359564]
 script = ExtResource("1_fkhhx")
@@ -35,3 +36,5 @@ offset_right = 1739.0
 offset_bottom = 778.0
 theme_override_font_sizes/normal_font_size = 72
 text = "WOAH START SCENE"
+
+[node name="CourtRecord" parent="." instance=ExtResource("record")]

@@ -25,6 +25,7 @@ Global="*uid://dsoy2301ix4cf"
 Music="*uid://b5rsf011uw8js"
 Sfx="*uid://cyhrujvgwwofd"
 Dialogic="*uid://ds2q0uclmolvu"
+EvidenceInventory="*res://Scripts/Inventory/evidence_inventory.gd"
 
 [dialogic]
 

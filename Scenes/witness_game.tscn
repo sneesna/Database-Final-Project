@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ocu4bp8hcxmd"]
 
 [ext_resource type="Script" uid="uid://duiufcay6ucfs" path="res://Scripts/witness_game.gd" id="1_snrrh"]
+[ext_resource type="PackedScene" path="res://Scenes/Inventory/court_record.tscn" id="record"]
 
 [node name="WitnessGame" type="Node2D" unique_id=1552608522]
 script = ExtResource("1_snrrh")
+
+[node name="CourtRecord" parent="." instance=ExtResource("record")]

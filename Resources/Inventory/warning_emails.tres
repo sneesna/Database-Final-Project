@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EvidenceItem" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/evidence_item.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = 6
+title = "Warning Emails"
+description = "Exhibit T-06. Other companies reported suspicious submissions from the email address on Mr. Attaquer's account."

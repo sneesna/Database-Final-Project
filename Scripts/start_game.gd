@@ -35,6 +35,7 @@ var you9 = ["Thank you, Your Honor. The prosecution calls the witness that was a
 # Either make a function for switching characters or do it manually!
 
 func _ready() -> void:
+	EvidenceInventory.begin_case()
 	# Randomize game mode between 1 and 6
 	Global.gameMode = randi_range(1, 6)
 	print("game mode: ", Global.gameMode)

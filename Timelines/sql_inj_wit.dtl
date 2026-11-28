@@ -37,3 +37,5 @@ you: Do you have these warnings in writing?
 witness1: Yes! We got several emails about it.
 you: The prosecution would like to submit a record of the logs and the emails.
 judge: The court accepts the logs as evidence T-05. The court also accepts the emails as evidence T-06.
+do EvidenceInventory.award(5)
+do EvidenceInventory.award(6)

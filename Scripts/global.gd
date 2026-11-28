@@ -3,8 +3,8 @@ extends Node
 # PUT SETTINGS STUFF HERE TOO
 var font_on = false
 var font_btn = null
-var dyslexiaFont = load("res://assets/fonts/comici.ttf")
-var fontSize = 0 #OK we will adjust the default values later when we implement this
+var dyslexiaFont = preload("res://Assets/fonts/comici.ttf")
+var fontSize = 0 # 0 uses each control's normal text size
 var masterVolume = 100.0 #Default is 100% I guess
 var sfxVolume = 100.0
 

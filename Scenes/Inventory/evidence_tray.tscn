@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/evidence_tray.gd" id="1_tray"]
+
+[sub_resource type="StyleBoxFlat" id="Slot"]
+bg_color = Color(0.065, 0.245, 0.355, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.135, 0.37, 0.505, 1)
+
+[sub_resource type="StyleBoxFlat" id="Hover"]
+bg_color = Color(0.1, 0.32, 0.45, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.32, 0.61, 0.73, 1)
+
+[sub_resource type="StyleBoxEmpty" id="NoFocusRing"]
+
+[sub_resource type="Theme" id="SlotButtons"]
+Button/styles/normal = SubResource("Slot")
+Button/styles/disabled = SubResource("Slot")
+Button/styles/hover = SubResource("Hover")
+Button/styles/pressed = SubResource("Hover")
+Button/styles/focus = SubResource("NoFocusRing")
+
+[node name="EvidenceTray" type="ScrollContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+accessibility_name = "Evidence"
+horizontal_scroll_mode = 1
+vertical_scroll_mode = 0
+script = ExtResource("1_tray")
+
+[node name="Slots" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("SlotButtons")
+theme_override_constants/separation = 3

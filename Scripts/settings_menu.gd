@@ -1,20 +1,20 @@
 extends Control
 
+const LARGE_TEXT_SIZE = 32
+
 var music = Global.music_off
 var sfx_off = Global.sfx_off
 var blips_off = Global.blips_off
 var bgBtnState = Global.bgMusic_btn
 var sfxBtnState = Global.sfx_btn
 var blipsBtnState = Global.blips_btn
-var fontBtnState = Global.font_on
-var fontState = Global.font_btn
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#volumes
 	$bgMusic.button_pressed = Global.bgMusic_btn
 	$sfxVol.button_pressed = Global.sfx_btn
 	$blipsVol.button_pressed = Global.blips_btn
-	$dysFont.button_pressed = Global.font_on
+	_restore_text_settings()
 	pass
 
 	#set the actual volumes of the back and click sfx
@@ -28,8 +28,8 @@ func _process(_delta: float) -> void:
 #Travel back to menu
 func _on_back_btn_pressed() -> void:
 	
-	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
 	_on_cancel_settings_pressed()
+	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
 	Sfx.play()
 
 func _on_cancel_settings_pressed() -> void:
@@ -47,9 +47,7 @@ func _on_cancel_settings_pressed() -> void:
 	blips_off = Global.blips_off
 	$blipsVol.button_pressed = blipsBtnState
 	
-	fontBtnState = Global.font_on
-	$dysFont.button_pressed = fontBtnState
-	ThemeDB.get_default_theme().default_font = fontState
+	_restore_text_settings()
 	
 	Sfx.play()
 	##$bgMusic.value = Global.musicVolume
@@ -69,9 +67,10 @@ func _on_save_settings_pressed() -> void:
 	Global.blips_off = blips_off
 	blipsBtnState = $blipsVol.button_pressed
 	
-	Global.font_on = fontBtnState
-	ThemeDB.get_default_theme().default_font = fontState
-	fontBtnState = $dysFont.button_pressed
+	Global.font_on = $dysFont.button_pressed
+	Global.fontSize = LARGE_TEXT_SIZE if $largeText.button_pressed else 0
+	Global.font_btn = Global.dyslexiaFont if Global.font_on else null
+	ThemeDB.get_default_theme().default_font = Global.font_btn
 	
 	
 	#Global.sfxVolume = $sfxVol.value
@@ -111,19 +110,15 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 
 """
 
-#Dyslexia Font Toggle
+func _restore_text_settings() -> void:
+	$dysFont.set_pressed_no_signal(Global.font_on)
+	$largeText.set_pressed_no_signal(Global.fontSize > 0)
+	ThemeDB.get_default_theme().default_font = Global.dyslexiaFont if Global.font_on else null
+
+
 func _on_dys_font_toggled(toggled_on: bool) -> void:
 	Sfx.play()
-	if (toggled_on == true):
-		fontBtnState = true
-		fontState = Global.dyslexiaFont
-		ThemeDB.get_default_theme().default_font = fontState
-	else:
-		
-		fontBtnState = false
-		fontState = null
-		ThemeDB.get_default_theme().default_font = fontState
-		pass # Replace with function body.
+	ThemeDB.get_default_theme().default_font = Global.dyslexiaFont if toggled_on else null
 
 
 func _on_bg_music_toggled(toggled_on: bool) -> void:

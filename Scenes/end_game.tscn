@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://beaaxx2djw03n" path="res://Scenes/end_game.gd" id="1_fln83"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_box/dialogue_box.tscn" id="2_tiqjd"]
+[ext_resource type="PackedScene" path="res://Scenes/Inventory/court_record.tscn" id="record"]
 
 [node name="EndGame" type="Node2D" unique_id=957974654]
 script = ExtResource("1_fln83")
@@ -28,3 +29,5 @@ anchor_bottom = 0.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 dialogue_lines = Array[String]([])
+
+[node name="CourtRecord" parent="." instance=ExtResource("record")]
